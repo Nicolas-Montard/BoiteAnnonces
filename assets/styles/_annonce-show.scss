@@ -1,0 +1,9 @@
+.annonce-show{
+  .picture-container{
+    width: 50%;
+    height: 350px;
+    img{
+      object-fit: cover;
+    }
+  }
+}

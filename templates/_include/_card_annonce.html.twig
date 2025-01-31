@@ -1,0 +1,9 @@
+<div class="card shadow-sm border-0 rounded-3">
+    <div class="card-body text-center">
+        <h3 class="card-title fw-bold text-primary">{{ annonce.title }}</h3>
+        <p class="card-text text-muted">{{ annonce.description|slice(0, 125) ~ '...' }}</p>
+        <a href="{{ path('app_annonce_show', {id: annonce.id}) }}" class="btn btn-outline-primary mt-2">
+            Voir plus
+        </a>
+    </div>
+</div>

@@ -3,18 +3,39 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Créer un compte</h1>
+    <div class="register-form mt-5">
+        <h1>Créer un compte</h1>
 
-    {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.plainPassword, {
-        label: 'Password'
-    }) }}
-    {{ form_row(registrationForm.firstName) }}
-    {{ form_row(registrationForm.lastName) }}
+        <div class="mb-3">
+            {{ form_label(registrationForm.email, 'Email') }}
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
 
-    <button type="submit" class="btn">S'enregistrer</button>
-    {{ form_end(registrationForm) }}
+        <div class="mb-3">
+            {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(registrationForm.firstName, 'Prénom') }}
+            {{ form_widget(registrationForm.firstName, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(registrationForm.firstName) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(registrationForm.lastName, 'Nom') }}
+            {{ form_widget(registrationForm.lastName, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(registrationForm.lastName) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            S'enregistrer
+        </button>
+
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}

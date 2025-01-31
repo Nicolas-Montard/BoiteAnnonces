@@ -1,0 +1,8 @@
+<div class="navbar bg-secondary d-flex justify-content-between">
+        <a href="{{ path('app_annonce_index') }}" class="ms-5 py-2 text-white">Page d'accueil</a>
+    {% if app.user %}
+        <a href="{{ path('app_logout') }}" class="me-5 py-2 text-white">Se déconnecter</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="me-5 py-2 text-white">Se connecter</a>
+    {% endif %}
+</div>

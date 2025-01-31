@@ -3,36 +3,25 @@
 {% block title %}Annonce{% endblock %}
 
 {% block body %}
-    <h1>Annonce</h1>
+    <div class="annonce-show">
+        <h1 class="text-center mt-5">{{ annonce.title }}</h1>
+        <div class="picture-container mx-auto mt-5">
+            <img src="{{ asset('uploads/images/pictures/' ~ annonce.picture) }}" alt="" class="w-100 h-100 picture">
+        </div>
+        <p class="mx-auto w-75 mt-5">{{ annonce.description }}</p>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ annonce.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ annonce.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ annonce.description }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ annonce.picture }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ annonce.updatedAt ? annonce.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        {% if app.user == annonce.owner %}
+            <div class="text-center mt-5 d-flex justify-content-center">
+                <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" class="btn btn-primary me-2">Mettre a jour</a>
+                <div class="ms-2">
+                    {{ include('annonce/_delete_form.html.twig') }}
+                </div>
+            </div>
+        {% endif %}
+        <div class="text-center mt-3">
+            <a href="{{ path('app_annonce_index') }}" class="btn btn-primary">Retour à la liste</a>
+        </div>
 
-    <a href="{{ path('app_annonce_index') }}">back to list</a>
 
-    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}">edit</a>
-
-    {{ include('annonce/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

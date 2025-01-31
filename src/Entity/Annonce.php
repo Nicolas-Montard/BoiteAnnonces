@@ -8,6 +8,7 @@ use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -18,12 +19,15 @@ class Annonce
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['annonce:read', 'user:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['annonce:read', 'user:read'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['annonce:read', 'user:read'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -32,12 +36,18 @@ class Annonce
     #[Vich\UploadableField(mapping: 'picture_file', fileNameProperty: 'picture')]
     #[Assert\File(
         maxSize: '20M',
-        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+        mimeTypes: ['image/jpeg', 'image/png'],
     )]
     private ?File $pictureFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['annonce:read'])]
+    private ?User $owner = null;
+
 
     public function getId(): ?int
     {
@@ -108,6 +118,18 @@ class Annonce
     public function setUpdatedAt(?DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): static
+    {
+        $this->owner = $owner;
+
+        return $this;
     }
 
 }
