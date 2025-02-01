@@ -58,11 +58,9 @@ php bin/console lexik:jwt:generate-keypair
 
 symfony serve
 
-## Fonctionnalités
+## API
 
-### API
-
-## Login
+### Login
 
 La route pour se connecter en API et obtenir son token est :
 
@@ -77,7 +75,7 @@ Il faut lui envoyer dans le body de la requête en json:
 
 Un token JWT est par la suite reçu.
 
-## Annonce
+### Annonce
 
 Pour accéder aux annonces en API, il faut utiliser les routes :
 
@@ -93,6 +91,6 @@ La clé : Authorization
 
 La valeur : Bearer {token JWT}
 
-### Note
+## Note
 
 De nombreuses fonctionnalités n'ont pas pu être incorporées par manque de temps
