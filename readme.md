@@ -48,13 +48,13 @@ php bin/console doctrine:migration:migrate
 
 yarn build
 
-### 5. Génération des clés JWT
+### 6. Génération des clés JWT
 
 Pour générer les clés :
 
 php bin/console lexik:jwt:generate-keypair
 
-### 6. Lancement du serveur web
+### 7. Lancement du serveur web
 
 symfony serve
 
