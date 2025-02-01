@@ -15,30 +15,25 @@ Avant de démarrer le projet, assurez-vous que vous avez installé les outils su
 - **Symfony CLI**
 
 ## Installation
-2. Installer les dépendances
-
-Installez les dépendances PHP avec Composer :
 
 ### 1. Cloner le projet
 
 Clonez le projet depuis le dépôt Git :
 
-git clone https://github.com/votre-utilisateur/boite-annonces.git
+git clone https://github.com/Nicolas-Montard/BoiteAnnonces
 
 ### 2. Installer les dépendances
-
-Installez les dépendances :
 
 composer install
 
 yarn install
 
+
 ### 3. Configurer l'environnement
 
 Copiez le fichier .env pour créer un fichier .env.local et personnalisez les paramètres d'environnement :
 
-DB_URL : Configurez votre connexion à la base de données. Exemple :
-
+Parametrer la base de donnée mysql :
 DATABASE_URL="mysql://username:password@localhost:3306/boite_annonces"
 
 ### 4. Créer la base de données
@@ -48,6 +43,10 @@ Exécutez les commandes suivantes pour créer la base de données et les tables 
 php bin/console doctrine:database:create
 
 php bin/console doctrine:migration:migrate
+
+### 5. Compiler les fichiers
+
+yarn build
 
 ### 5. Génération des clés JWT
 
@@ -92,7 +91,7 @@ Il faut passer à ces routes le token JWT obtenu précédemment avec :
 
 La clé : Authorization
 
-La valeur : Bearer <token JWT>
+La valeur : Bearer {token JWT}
 
 ### Note
 
